@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate_Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link rel="icon" href="image/StudyMate.png" type="image-icon">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 侧边导航栏 -->
+        <div class="nav">
+            <div class="nav-top">
+                <div class="logo">
+                    <img src="image/StudyMate.png" alt="Logo">
+                    <span class="logo_text">StudyMate</span>
+                </div>
+                <!-- 搜索框 -->
+                <div class="search-bar">
+                    <i class="iconfont icon-Search icon"></i>
+                    <textarea placeholder="搜索" v-model="searchQuery" @input="searchFunctions"></textarea>
+                </div>
+                <div class="search-results" v-if="searchResults.length > 0">
+                    <div v-for="(result, index) in searchResults.slice(0, 2)" :key="index" @click="navigateTo(result.view)">
+                        {{ result.name }}
+                    </div>
+                </div>
+                <div class="search-results" v-if="searchQuery && searchResults.length === 0">
+                    没有查找到“{{ searchQuery }}”相关内容
+                </div>
+                <!-- 添加分界线 -->
+                <div class="divider"></div>
+                <a href="#" @click="currentView = 'qa'">
+                    <i class="iconfont icon-ChatDotSquare icon"></i>
+                    <span>答疑大模型</span>
+                </a>
+                <a href="#" @click="currentView = 'community'">
+                    <i class="iconfont icon-UserMore icon"></i>
+                    <span>社区</span>
+                </a>
+                <a href="#" @click="currentView = 'monitoring'">
+                    <i class="iconfont icon-AlarmClock icon"></i>
+                    <span>学习监测</span>
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <component :is="currentView"></component>
+        </div>
+        <!-- 通知图标 -->
+        <div class="bell">
+            <a href="#" @click="currentView = 'bell'">
+                <i class="iconfont icon-Bell icon"></i>
+            </a>
+        </div>
+        <!-- 用户头像 -->
+        <div class="profile-icon" @mouseover="showDropdownMenu" @mouseleave="hideDropdownMenu">
+            <img src="image/avator.png" alt="User Avatar">
+        </div>
+        <div :class="['dropdown', { show: showDropdown }]" @mouseover="showDropdownMenu" @mouseleave="hideDropdownMenu">
+            <a href="#" @click="currentView = 'profile'">
+                <i class="iconfont icon-UserHeart icon"></i>
+                个人中心
+            </a>
+            <a href="#" @click="currentView = 'settings'">
+                <i class="iconfont icon-SettingSemicircle icon"></i>
+                设置
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

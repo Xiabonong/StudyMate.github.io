@@ -1,0 +1,275 @@
+/* 全局样式 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+}
+:root {
+    --primary-color: #f8f9fa;
+    --box-shadow-color: #616161;
+    --background-color: #e2e6ea;
+    --text-color: #2c2c2c;
+}
+
+#app {
+    display: flex;
+    width: 100%;
+}
+
+/* 导航栏样式 */
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    padding: 20px;
+    width: 250px;
+    height: 100vh;
+    box-shadow: 0 2px 3px #616161;
+}
+
+.nav-top {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 搜索框 */
+.nav .search-bar {
+    display: flex;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    background-color: #e2e6ea;
+}
+.search-bar textarea {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #2c2c2c;
+    font-size: 14px;
+    resize: none;
+    overflow: hidden;
+}
+.nav .search-results {
+    margin-top: 8px;
+    /* background-color: #e2e6ea; */
+    color: #2c2c2c;
+    font-size: 14px;
+    border-radius: 5px;
+    z-index: 10;
+}
+.nav .search-results div {
+    padding: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c2c2c;
+    border-radius: 8px;
+}
+.nav .search-results div:hover {
+    background-color: #e2e6ea;
+}
+
+/* 添加分界线 */
+.nav .divider {
+    height: 1px;
+    background-color: #dcdcdc;
+    margin: 10px 0;
+}
+
+.nav a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c2c2c;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+.nav a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+.nav a:hover {
+    background-color: #e2e6ea;
+}
+
+.nav .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.nav .logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+.nav .logo span {
+    color: #313131;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* 用户头像和通知图标样式 */
+.profile-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 下拉菜单 */
+.dropdown {
+    position: absolute;
+    top: 60px; 
+    right: 10px;
+    width: 130px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 3px #616161;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(20%, 0) scale(0); 
+    transform-origin: top;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+.dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, 0) scale(1); 
+}
+.dropdown a {
+    padding: 10px;
+    text-decoration: none;
+    color: #2c2c2c;
+}
+.dropdown a:hover {
+    background-color: #e2e6ea;
+}
+
+/* 通知样式 */
+.bell {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+}
+.bell a{
+    text-decoration: none;
+    color: #2c2c2c;
+}
+.bell i:hover {
+    background-color: #e2e6ea;
+    border-radius: 50%;
+}
+.bell i {
+    font-size: 25px;
+    font-weight: medium;
+    padding: 5px;
+}
+.bell a:hover::after {
+    content: '通知';
+    font-size: small;
+    color: #fff;
+    position: absolute;
+    top: 35px; /* 调整提示文本的位置 */
+    left: -6px;
+    background-color: #5a5a5a;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+/* 个人中心样式 */
+.profile {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0; /* 修改背景颜色 */
+    border-radius: 15px; /* 修改边框圆角 */
+    box-shadow: 0 4px 6px #bbb; /* 添加阴影 */
+    height: 90vh;
+    position: relative;
+}
+
+.profile h2 {
+    text-align: center;
+    margin-bottom: 25px; /* 修改下边距 */
+    color: #333; /* 修改文字颜色 */
+}
+
+.profile img {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px; /* 居中显示并添加下边距 */
+}
+
+.profile-item {
+    display: block; /* 改为块级元素 */
+    margin-bottom: 20px; /* 增加下边距 */
+}
+
+.profile-item label {
+    display: block; /* 改为块级元素 */
+    width: 100%;
+    font-weight: bold;
+    margin-top: 10px; /* 添加上边距 */
+    margin-bottom: 10px; /* 添加下边距 */
+}
+
+.profile-item input,
+.profile-item select {
+    width: 100%; /* 设置宽度为100% */
+    padding: 10px; /* 修改内边距 */
+    border: 2px solid #aaa; /* 修改边框 */
+    border-radius: 8px; /* 修改边框圆角 */
+}
+
+.profile button {
+    display: block;
+    width: 90%;
+    left: 5%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+}
+
+.profile button:hover {
+    background-color: #0056b3;
+}
